@@ -1,0 +1,41 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Steganalysis - Bit-O-Steg Detection</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>2ba4b7b7-aa86-48d8-a7fb-945b82b8cc62</md:uuid>
+</metadata>
+<content>
+<section id="id49319583">
+<title>Steganalysis</title>
+<section id="id49433000">
+<title>Bit-o-steg detection</title>
+<para id="id49233318">Due to the complexity of bit-o-steg, we
+turned to previous research to find a viable detection method. Each
+entry in the 8x8 blocks has a specific probability distribution.
+The distribution is found by looking at the values of that entry
+slot across the entire image. Figure 1 shows a histogram of an
+entry without data. The histogram looks at the DCT coefficient
+value and counts how often that value appears within that entry
+slot. Figure 2 shows a histogram of an entry with data. Comparing
+the two figures, there is a sudden drop around the 0 value in the
+histogram of an entry with data. The histogram of an entry with
+data also appears to smooth out.</para>
+<para id="id49513104">These distributions are defined by their own
+characteristic functions. The bit-o-steg hiding distorts that
+distribution by randomly changes certain entries thus altering the
+function. Using the inner product, we could test for a match
+between the characteristic function and the suspect image’s
+probability distribution. Unfortunately, the distribution functions
+vary based on the subject of the picture. Furthermore, we lack the
+statistical background necessary to classify these distributions
+and properly identify the characteristic functions. Thus,
+implementing bit-o-steg detection proved to be beyond the scope of
+this project.</para>
+<figure id="id49009781">
+	<media id="idp19792" alt=""><image src="../../media/hist_no_data" mime-type="image/png"/></media>
+</figure>
+<figure id="id49452279">
+	<media id="idm6108192" alt=""><image src="../../media/hist_data" mime-type="image/png"/></media>
+</figure>
+</section>
+</section>
+</content>
+</document>

@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Zeros Hiding Method</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d8af85ce-a0b6-4a0a-9d3b-07de13cb0cf6</md:uuid>
+</metadata>
+<content>
+<section id="id28444954">
+<title>Data Hiding Methods</title>
+<section id="id47211762">
+<title>Zero Hiding</title>
+<section id="id3804466">
+<title>Hiding Information</title>
+<para id="id47272610">We arrived at our first data hiding method,
+which we called “zero hiding,” quite intuitively. If you recall,
+our compression algorithm removed the least important DCT
+coefficients. It follows, then, that we could put the bit stream we
+wish to hide back into these dropped coefficients without changing
+the image drastically. To do this though, there must be a way to
+distinguish a zero which resulted from a dropped coefficient and a
+coefficient that is zero. To do this, we ran the image through a
+modified compressor that, instead of dropping coefficients below
+the specified threshold, replaced them with either a plus or minus
+one, depending on the sign of the coefficient.</para>
+<figure id="id2881036">
+	<media id="idm10491328" alt=""><image src="../../media/DCT_drop" mime-type="image/png"/></media>
+	<caption>The DCT is taken and then each coefficient under the specified threshold (10) will be dropped. These are coefficients are shown in blue in the picture on the right.</caption></figure>
+<para id="id28709435">Next the hiding algorithm is given a binary
+data stream and the threshold value. The data stream is then
+divided up into words. However, the maximum decimal value of the
+word must be less than the threshold, since values over the
+threshold signify an important coefficient in the picture. We then
+increment each word’s decimal value by one to avoid putting in zero
+valued coefficients, which would otherwise be indistinguishable
+from zero valued coefficients in the original image. We then go
+back to the original coefficients matrix and replace the ones with
+the new value of the data word, maintaining the sign
+throughout.</para>
+<figure id="id44779199">
+	<media id="idm2209888" alt=""><image src="../../media/hiding_zeros" mime-type="image/png"/></media>
+	<caption>The dropped coefficients are replaced with words created from the data stream. The IDCT is then taken, transforming the coefficient matrix back to a picture matrix.</caption></figure>
+</section>
+<section id="id5605942">
+<title>Data Retrieval</title>
+<para id="id28405956">To recover the hidden data the recovery
+script is given the threshold, and subtracts one from all DCT
+coefficients blow that threshold and tacks their binary values
+together, forming the original binary data.</para>
+</section>
+</section>
+</section>
+</content>
+</document>

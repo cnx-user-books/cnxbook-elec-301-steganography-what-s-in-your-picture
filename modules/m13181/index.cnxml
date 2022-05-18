@@ -1,0 +1,184 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Steganalysis - Zeros Hiding Detection</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b13e302d-63ca-4b6c-80c5-ec329ec52783</md:uuid>
+</metadata>
+<content>
+<section id="id48318900">
+<title>Steganalysis</title>
+<section id="id48495688">
+<title>Zeros Hiding Detection</title>
+<para id="id48388975">In order to find data hiding with our zeros
+hidden method, we first analyzed the histogram of the DCT
+coefficients of an uncompressed image, compressed image without
+data, and compressed image with hidden data. The histogram of the
+DCT coefficients reveals the number of times each DCT coefficient
+value appears within the DCT matrix. From the analysis of an
+uncompressed image (Figure 1), the histogram has a smooth curve.
+In the histogram of compressed image (Figure 2), values before the
+threshold are dropped. Therefore, those values dropped to zero in
+the histogram. The histogram of compressed image with data (Figure
+3) shows a similar shape to an uncompressed image. However, the
+values are much lower which makes sense since we are replacing the
+values that were originally going to be dropped with data.
+Therefore it is statically less likely to replace the dropped value
+with the same value.</para>
+<figure id="id27563901">
+	<media id="idm6423888" alt=""><image src="../../media/DCT_coefficients" mime-type="image/png"/></media>
+</figure>
+<figure id="id48495157">
+	<media id="idp1263824" alt=""><image src="../../media/DCT_compressed" mime-type="image/png"/></media>
+</figure>
+<figure id="id48422817">
+	<media id="idm856928" alt=""><image src="../../media/DCT_hidden" mime-type="image/png"/></media>
+</figure>
+<para id="id48297945">Therefore, after analyzing the histogram of
+the different types of images, we did an analysis of the l2 norm in
+the DCT matrix. If the analysis results in no power in the one
+valued DCT coefficients, it is a compressed image. This is due to
+the fact that ones are the minimum value that can be dropped. If
+there is power in the ones, then the image is either uncompressed
+or contains hidden data. The key difference between the two is the
+magnitude of the power in the ones. Statistically, it is less
+likely that every dropped coefficient gets replaced with a one.
+Therefore, the magnitude of the power in the ones in an image with
+data is lower than a compressed image. An image with hidden data
+will on average fall below a certain threshold. This threshold is
+dependent on the image size. Figure 4 shows the plots of the power
+without data, the power with data, and the threshold. Clearly, the
+power without data is greater than the power with data. We found
+our detection program to have a 90% success rate but resulted in a
+false-positive 12% of the time.</para>
+
+ <equation id="l2"><title>L2 Norm Equation</title>
+<m:math>
+  <m:semantics>
+    <m:mrow>
+      <m:mrow>
+        <m:mrow>
+          <m:msub>
+            <m:mrow>
+              <m:mo>∥</m:mo>
+              <m:mi fontweight="bold">x</m:mi>
+              <m:mo>∥</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mrow>
+                <m:mn>2</m:mn>
+              </m:mrow>
+            </m:mrow>
+          </m:msub>
+        </m:mrow>
+      </m:mrow>
+      <m:mrow>
+        <m:mo>=</m:mo>
+      </m:mrow>
+      <m:mrow>
+        <m:msup>
+          <m:mfenced separators="">
+            <m:mrow>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>n</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mrow>
+                    <m:mi>N</m:mi>
+                    <m:mo>-</m:mo>
+                    <m:mn>1</m:mn>
+                  </m:mrow>
+                </m:mrow>
+              </m:munderover>
+              <m:mfenced separators="">
+                <m:msup>
+                  <m:mfenced separators="">
+                    <m:mrow>
+                      <m:mo>|</m:mo>
+                      <m:mrow>
+                        <m:mi>x</m:mi>
+                        <m:mo/>
+                        <m:mfenced>
+                          <m:mi>n</m:mi>
+                        </m:mfenced>
+                      </m:mrow>
+                      <m:mo>|</m:mo>
+                    </m:mrow>
+                  </m:mfenced>
+                  <m:mn>2</m:mn>
+                </m:msup>
+              </m:mfenced>
+            </m:mrow>
+          </m:mfenced>
+          <m:mrow>
+            <m:mfrac>
+              <m:mrow>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mn>2</m:mn>
+              </m:mrow>
+            </m:mfrac>
+          </m:mrow>
+        </m:msup>
+      </m:mrow>
+    </m:mrow>
+    <m:annotation-xml encoding="MathML-Content">
+      <m:apply>
+        <m:eq/>
+        <m:apply>
+          <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#norm"/>
+          <m:domainofapplication>
+            <m:cn>2</m:cn>
+          </m:domainofapplication>
+          <m:ci type="vector">x</m:ci>
+        </m:apply>
+        <m:apply>
+          <m:power/>
+          <m:apply>
+            <m:sum/>
+            <m:bvar>
+              <m:ci>n</m:ci>
+            </m:bvar>
+            <m:lowlimit>
+              <m:cn>0</m:cn>
+            </m:lowlimit>
+            <m:uplimit>
+              <m:apply>
+                <m:minus/>
+                <m:ci>N</m:ci>
+                <m:cn>1</m:cn>
+              </m:apply>
+            </m:uplimit>
+            <m:apply>
+              <m:power/>
+              <m:apply>
+                <m:abs/>
+                <m:apply>
+                  <m:ci class="descrete" type="fn">x</m:ci>
+                  <m:ci>n</m:ci>
+                </m:apply>
+              </m:apply>
+              <m:cn>2</m:cn>
+            </m:apply>
+          </m:apply>
+          <m:apply>
+            <m:divide/>
+            <m:cn>1</m:cn>
+            <m:cn>2</m:cn>
+          </m:apply>
+        </m:apply>
+      </m:apply>
+    </m:annotation-xml>
+  </m:semantics>
+</m:math>
+</equation>
+
+<figure id="id48292809">
+	<media id="idp1154800" alt=""><image src="../../media/L2_norm" mime-type="image/png"/></media>
+</figure>
+</section>
+</section>
+</content>
+</document>

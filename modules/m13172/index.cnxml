@@ -1,0 +1,26 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Bit-O-Steg Method - Background</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>50b95b9b-4922-46ec-819d-4c3b21301fb8</md:uuid>
+</metadata>
+<content>
+<section id="id49182631">
+<title>Data Hiding Methods</title>
+<section id="id49136877">
+<title>Bit-O-Steg</title>
+<section id="id5946630">
+<title>Previous Work and Background</title>
+<para id="id49010122">In our research we found a steganographic
+method known as JSteg, created by Derek Upsham. The basic premise
+behind JSteg is that its algorithm hides the data sequentially
+within the least significant bits of the DCT coefficients (Niels
+and Honeyman). The problem with JSteg is that it is not very secure; there is no secret
+key with which it is encrypted. Therefore, anybody that knows an
+image contains data with JSteg hiding can easily retrieve the
+hidden message. Our second hiding method, which we have called
+bit-o-steg, improves upon the JSteg algorithm since we employ the
+use of a key when hiding the data.</para>
+</section>
+</section>
+</section>
+</content>
+</document>

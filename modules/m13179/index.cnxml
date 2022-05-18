@@ -1,0 +1,35 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Importance of Steganalysis</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d5938b35-6677-4233-97e9-6daa4a5216c9</md:uuid>
+</metadata>
+<content>
+<section id="id26971736">
+<title>Steganalysis</title>
+<section id="id3416940">
+<title>Importance of Steganalysis</title>
+<para id="id47459198">Image steganalysis is the science of
+analyzing images in order to discover methods of discovering and
+detecting hidden messages and data within the images. Statistical
+digital signal processing is often used in order to detect data
+within images.</para>
+<para id="id28113793">It is important to detect hidden messages
+within the images. On the steganography side, this is important in
+order to find methods in order to improve the algorithm
+implementing steganography. By exposing the flaws to the algorithm,
+the user can further improve the algorithm in order to make it more
+difficult to detect whether or not data is hidden in the
+images.</para>
+<para id="id47510565">Steganalysis is also especially important in
+the security aspect, namely monitoring a user’s communication with
+the outside world. In the age of Internet, images are sent via
+email or by posting on websites. Detecting whether or not data is
+hidden in the images will allow the monitor to further analyze the
+suspicious images in order find what the hidden message is.</para>
+<figure id="id47515285">
+	<media id="idp1180544" alt=""><image src="../../media/rice_walk" mime-type="image/png"/></media>
+	<caption>Can you tell if there is hidden data?</caption>
+</figure>
+</section>
+</section>
+</content>
+</document>

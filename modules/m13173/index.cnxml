@@ -1,0 +1,177 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+	<title>Compression - Dropping the DCT Coefficients</title>
+	<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>364c184d-8279-4571-868d-5aa0b935a105</md:uuid>
+</metadata>
+	<content>
+		<section id="id49089869">
+			<title>Compression Algorithm</title>
+			<section id="id49036954">
+				<title>Dropping DCT Coefficients</title>
+				<para id="id48397487">Our framework and JPEG are both based around
+the discrete cosine transform. Just like with sound, certain
+frequencies in an image are more noticeable than others, so taking
+them out of the image doesn’t change the image much. We used the 2D
+discrete cosine transform (DCT) as seen in equation 1 to take an image and
+converts it into the frequencies that make up the image, in other
+words it takes us into the frequency domain.</para><equation id="DCT">
+					<m:math display="block">
+						<m:semantics>
+							<m:mtable columnalign="left">
+								<m:mtr>
+									<m:mtd>
+										<m:msub>
+											<m:mi>B</m:mi>
+											<m:mrow>
+												<m:mi>p</m:mi><m:mi>q</m:mi>
+											</m:mrow>
+										</m:msub>
+										<m:mo>=</m:mo><m:msub>
+											<m:mi>α</m:mi>
+											<m:mi>p</m:mi>
+										</m:msub>
+										<m:msub>
+											<m:mi>α</m:mi>
+											<m:mi>q</m:mi>
+										</m:msub>
+										<m:mstyle displaystyle="true">
+											<m:munderover>
+												<m:mo>∑</m:mo>
+												<m:mrow>
+													<m:mi>m</m:mi><m:mo>=</m:mo><m:mn>0</m:mn>
+												</m:mrow>
+												<m:mrow>
+													<m:mi>M</m:mi><m:mo>−</m:mo><m:mn>1</m:mn>
+												</m:mrow>
+											</m:munderover>
+											<m:mrow>
+												<m:mstyle displaystyle="true">
+													<m:munderover>
+														<m:mo>∑</m:mo>
+														<m:mrow>
+															<m:mi>n</m:mi><m:mo>=</m:mo><m:mn>0</m:mn>
+														</m:mrow>
+														<m:mrow>
+															<m:mi>N</m:mi><m:mo>−</m:mo><m:mn>1</m:mn>
+														</m:mrow>
+													</m:munderover>
+													<m:mrow>
+														<m:msub>
+															<m:mi>A</m:mi>
+															<m:mrow>
+																<m:mi>m</m:mi><m:mi>n</m:mi>
+															</m:mrow>
+														</m:msub>
+														<m:mi>cos</m:mi><m:mo>⁡</m:mo><m:mo stretchy="false">(</m:mo><m:mfrac>
+															<m:mrow>
+																<m:mi>π</m:mi><m:mo stretchy="false">(</m:mo><m:mn>2</m:mn><m:mi>m</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo stretchy="false">)</m:mo><m:mi>p</m:mi>
+															</m:mrow>
+															<m:mrow>
+																<m:mn>2</m:mn><m:mi>M</m:mi>
+															</m:mrow>
+														</m:mfrac>
+													</m:mrow>
+												</m:mstyle>
+											</m:mrow>
+										</m:mstyle><m:mo stretchy="false">)</m:mo><m:mi>cos</m:mi><m:mo>⁡</m:mo><m:mo stretchy="false">(</m:mo><m:mfrac>
+											<m:mrow>
+												<m:mi>π</m:mi><m:mo stretchy="false">(</m:mo><m:mn>2</m:mn><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn><m:mo stretchy="false">)</m:mo><m:mi>q</m:mi>
+											</m:mrow>
+											<m:mrow>
+												<m:mn>2</m:mn><m:mi>N</m:mi>
+											</m:mrow>
+										</m:mfrac>
+										<m:mo stretchy="false">)</m:mo>
+									</m:mtd>
+								</m:mtr>
+								<m:mtr>
+									<m:mtd>
+										<m:mi>w</m:mi><m:mi>h</m:mi><m:mi>e</m:mi><m:mi>r</m:mi><m:mi>e</m:mi><m:mo>:</m:mo>
+									</m:mtd>
+								</m:mtr>
+								<m:mtr>
+									<m:mtd>
+										<m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>p</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi><m:mo>−</m:mo><m:mn>1</m:mn>
+									</m:mtd>
+								</m:mtr>
+								<m:mtr>
+									<m:mtd>
+										<m:mn>0</m:mn><m:mo>≤</m:mo><m:mi>q</m:mi><m:mo>≤</m:mo><m:mi>N</m:mi><m:mo>−</m:mo><m:mn>1</m:mn>
+									</m:mtd>
+								</m:mtr>
+								<m:mtr>
+									<m:mtd>
+										<m:msub>
+											<m:mi>α</m:mi>
+											<m:mi>p</m:mi>
+										</m:msub>
+										<m:mo>=</m:mo><m:mo>{</m:mo><m:mtable>
+											<m:mtr>
+												<m:mtd>
+													<m:mrow>
+														<m:mn>1</m:mn><m:mo>/</m:mo><m:msqrt>
+															<m:mi>M</m:mi>
+														</m:msqrt>
+														<m:mo>,</m:mo><m:mi>p</m:mi><m:mo>=</m:mo><m:mn>0</m:mn>
+													</m:mrow>
+												</m:mtd>
+											</m:mtr>
+											<m:mtr>
+												<m:mtd>
+													<m:mrow>
+														<m:msqrt>
+															<m:mrow>
+																<m:mn>2</m:mn><m:mo>/</m:mo><m:mi>M</m:mi>
+															</m:mrow>
+														</m:msqrt>
+														<m:mo>,</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>p</m:mi><m:mo>≤</m:mo><m:mi>M</m:mi><m:mo>−</m:mo><m:mn>1</m:mn>
+													</m:mrow>
+												</m:mtd>
+											</m:mtr>
+										</m:mtable>
+									</m:mtd>
+								</m:mtr>
+								<m:mtr>
+									<m:mtd>
+										<m:msub>
+											<m:mi>α</m:mi>
+											<m:mi>q</m:mi>
+										</m:msub>
+										<m:mo>=</m:mo><m:mo>{</m:mo><m:mtable>
+											<m:mtr>
+												<m:mtd>
+													<m:mrow>
+														<m:mn>1</m:mn><m:mo>/</m:mo><m:msqrt>
+															<m:mi>N</m:mi>
+														</m:msqrt>
+														<m:mo>,</m:mo><m:mi>q</m:mi><m:mo>=</m:mo><m:mn>0</m:mn>
+													</m:mrow>
+												</m:mtd>
+											</m:mtr>
+											<m:mtr>
+												<m:mtd>
+													<m:mrow>
+														<m:msqrt>
+															<m:mrow>
+																<m:mn>2</m:mn><m:mo>/</m:mo><m:mi>N</m:mi>
+															</m:mrow>
+														</m:msqrt>
+														<m:mo>,</m:mo><m:mn>1</m:mn><m:mo>≤</m:mo><m:mi>q</m:mi><m:mo>≤</m:mo><m:mi>N</m:mi><m:mo>−</m:mo><m:mn>1</m:mn>
+													</m:mrow>
+												</m:mtd>
+											</m:mtr>
+										</m:mtable>
+									</m:mtd>
+								</m:mtr>
+							</m:mtable>
+							<m:annotation encoding="MathType-MTEF">
+ MathType@MTEF@5@5@+=feaafiart1ev1aaatCvAUfeBSjuyZL2yd9gzLbvyNv2CaerbuLwBLnhiov2DGi1BTfMBaeXatLxBI9gBaerbd9wDYLwzYbItLDharqqtubsr4rNCHbGeaGqiVCI8FfYJH8YrFfeuYxb8Eeeu0xXdbba9frFj0=OqFfea0dXdd9vqai=hGuQ8kuc9pgc9q8qqaq=dir=f0=yqaiVgFr0xfr=xfr=xb9adbaqaaeGaciGaaiaabeqaamaabaabaaGceaqabeaacaWGcbWaaSbaaSqaaiaadchacaWGXbaabeaakiabg2da9iabeg7aHnaaBaaaleaacaWGWbaabeaakiabeg7aHnaaBaaaleaacaWGXbaabeaakmaaqahabaWaaabCaeaacaWGbbWaaSbaaSqaaiaad2gacaWGUbaabeaakiGacogacaGGVbGaai4CaiaacIcadaWcaaqaaiabec8aWjaacIcacaaIYaGaamyBaiabgUcaRiaaigdacaGGPaGaamiCaaqaaiaaikdacaWGnbaaaaWcbaGaamOBaiabg2da9iaaicdaaeaacaWGobGaeyOeI0IaaGymaaqdcqGHris5aaWcbaGaamyBaiabg2da9iaaicdaaeaacaWGnbGaeyOeI0IaaGymaaqdcqGHris5aOGaaiykaiGacogacaGGVbGaai4CaiaacIcadaWcaaqaaiabec8aWjaacIcacaaIYaGaamOBaiabgUcaRiaaigdacaGGPaGaamyCaaqaaiaaikdacaWGobaaaiaacMcaaeaacaWG3bGaamiAaiaadwgacaWGYbGaamyzaiaacQdaaeaacaaIWaGaeyizImQaamiCaiabgsMiJkaad2eacqGHsislcaaIXaaabaGaaGimaiabgsMiJkaadghacqGHKjYOcaWGobGaeyOeI0IaaGymaaqaaiabeg7aHnaaBaaaleaacaWGWbaabeaakiabg2da9KazaaEacaGG7bGcfaqabeGabaaabaGaaGymaiaac+cadaGcaaqaaiaad2eaaSqabaGccaGGSaGaamiCaiabg2da9iaaicdaaeaadaGcaaqaaiaaikdacaGGVaGaamytaaWcbeaakiaacYcacaaIXaGaeyizImQaamiCaiabgsMiJkaad2eacqGHsislcaaIXaaaaaqaaiabeg7aHnaaBaaaleaacaWGXbaabeaakiabg2da9KazaaEacaGG7bGcfaqabeGabaaabaGaaGymaiaac+cadaGcaaqaaiaad6eaaSqabaGccaGGSaGaamyCaiabg2da9iaaicdaaeaadaGcaaqaaiaaikdacaGGVaGaamOtaaWcbeaakiaacYcacaaIXaGaeyizImQaamyCaiabgsMiJkaad6eacqGHsislcaaIXaaaaaaaaa@AE52@</m:annotation>
+						</m:semantics>
+					</m:math>
+				</equation>
+				<para id="element-214"> There are several transforms that could have been utilized to get the image into the frequency domain. The DCT, however, is a purely real transform. Thus, manipulating the frequencies is much more straightforward compared to other transforms. From here we could take the DCT of the entire image and then throw away frequencies that are less  noticeable. Unfortunately this would make the image blurry and cause the image to lose edges. To solve this problem the image is divided into 8x8 blocks, to preserve the integrity of the image. To drop insignificant frequencies, JPEG compression utilizes a quantization matrix. We simplified this process by using a threshold value and dropping frequencies below the threshold. Thus our compression algorithm models the basic functionality of the JPEG standard.</para><figure id="id49363148">
+					<media id="idp9421840" alt=""><image src="../../media/take_DCT" mime-type="image/png"/></media>
+					<caption>The result of taking the DCT. The numbers in red are the coefficients that fall below the specified threshold of 10. </caption></figure>
+			</section>
+		</section>
+	</content>
+</document>

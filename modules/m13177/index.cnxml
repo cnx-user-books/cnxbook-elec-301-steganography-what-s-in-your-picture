@@ -1,0 +1,47 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Future Considerations and Conclusions</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>10ff361f-89a0-4bf1-a7d3-811a8a400388</md:uuid>
+</metadata>
+<content>
+<section id="id49440405">
+<title>Future Considerations and Conclusion</title>
+<section id="id49810080">
+<title>Future Work</title>
+<para id="id28173387">Due to time and computing limitations, we
+could not explore all facets of steganography and detection
+techniques. As you saw, we studied the power in our pictures to
+test for hidden data. Another method which we were unable to
+explore was to analyze the noise of the pictures. Adding hidden
+data adds random noise, so it follows that a properly tuned noise
+detection algorithm could recognize whether or not a picture had
+steganographic data or not.</para>
+</section>
+<section id="id28173391">
+<title>Conclusion</title>
+<para id="id5858859">We explored several steganography techniques
+and the various detection algorithms associated with them. By using
+the properties of the DCT and our understanding of the frequency
+domain we developed the zeros hiding method. Zeros hiding proved to
+be easier to analyze than bit-o-steg and can hide significantly
+more data. Unfortunately its ease of detection makes it a less
+secure method. After researching various techniques already
+implemented, we chose to improve upon one, thus creating our
+bit-o-steg method. Bit-o-steg can only hide data in coefficients
+that were not dropped, thus limiting the amount of data we can
+hide. However, it greatly enhances the effectiveness of the
+steganography since it uses a key, making it much more challenging
+to detect. In the end we found both effective, but the complexity
+of bit-o-steg makes it more promising. Detection of our methods was
+critical to the breadth of our project. By investigating the power
+in various components of our images we discovered how to detect
+data hidden via the zero hiding method. Detecting bit-o-steg
+required us to draw on past steganography research and
+statistically analyze the effects of this type of data hiding. The
+methods and accompanying detection schemes we developed broadened
+our understanding of steganography, which, unlike encryption,
+allows secret data to be traded hands without raising an
+eyebrow.</para>
+</section>
+</section>
+</content>
+</document>

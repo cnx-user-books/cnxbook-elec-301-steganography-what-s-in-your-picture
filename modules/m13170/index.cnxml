@@ -1,0 +1,47 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Abstract and History</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>1d063fe3-0636-4a8f-a20f-5ddee534cdc7</md:uuid>
+</metadata>
+<content>
+<section id="id46174162">
+<title>Abstract and History</title>
+<section id="id6278687">
+<title>Abstract</title>
+<para id="id4707406">For years, people have devised different
+techniques for encrypting data while others have attempted to break
+these encrypted codes. For our project we decided to put our wealth
+of DSP knowledge to use in the art of steganography. Steganography
+is a technique that allows one to hide binary data within an image
+while adding few noticeable changes. Technological advancements
+over the past decade or so have brought terms like “mp3,” “jpeg,”
+and “mpeg” into our everyday vocabulary. These lossy compression
+techniques lend themselves perfectly for hiding data. We have
+chosen this project because it gives a chance to study several
+various aspects of DSP. First, we devised our own compression
+technique which we loosely based off jpeg. There have been many
+steganographic techniques created so far, which compelled us to
+create two of our own strategies for hiding data in the images we
+compress. Our first method, zero hiding, adds the binary data into
+the DCT coefficients dropped in compression. Our other method,
+which we called bit-o-steg, uses a key to change the values of
+coefficients that remain after compression. Finally, we had to find
+ways to analyze the success of our data hiding strategies, so
+through our research we found both DSP and statistical methods to
+qualitatively measure our work.</para>
+</section>
+<section id="id4230666">
+<title>A Brief History of Steganography</title>
+<para id="id49855924">Steganography, or “hidden writing” can be
+traced back to 440 BC in ancient Greece. Often they would write a
+message on a wooden panel, cover it in wax, and then write a
+message on the wax. These wax tablets were already used as writing
+utensils, so the hiding of a message in a commonly used device
+draws very little suspicion. In addition to use by the Greeks, the
+practice of steganography was utilized by spies in World War II.
+There were even rumors that terrorists made use of steganography
+early in 2001 to plan the attacks of September 11</para>
+
+</section>
+</section>
+</content>
+</document>

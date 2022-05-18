@@ -1,0 +1,53 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Bit-O-Steg Hiding</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>578b59e4-2e25-46c5-a2c6-588368b555ba</md:uuid>
+</metadata>
+<content>
+<section id="id49338224">
+<title>Data Hiding Methods</title>
+<section id="id48975346">
+<title>Bit-O-Steg</title>
+<section id="id49313184">
+<title>Hiding Information</title>
+<para id="id49304976">As you should recall, our zeros hiding method
+inserts data into the dropped coefficients of the DCT. The
+bit-o-steg algorithm hides data within the coefficients that were
+not dropped. The critical part of bit-o-steg is the key used to
+encrypt the data. This user defined key selects which nonzero
+coefficients to change and which bits to change within each
+coefficient. The simplest key would be a key of [1]. This would
+change each coefficient sequentially and change the last bit in the
+coefficient.</para>
+<figure id="id48852726">
+	<media id="idp505712" alt=""><image src="../../media/bit-o-steg_key" mime-type="image/png"/></media>
+	<caption>The key is what makes bit-o-steg unique from other algorithms. Here a key of [1 2] is applied to hide the data. </caption>
+</figure>
+<para id="id49299523">As you can see in figure 1, we chose a key of
+[1 2]. The key will select the first coefficient and its least
+significant bit and input the first bit of the hidden data into
+that coefficient bit. Then the key will count two coefficients and
+take the second least significant bit and repeat the hiding
+process. Since this is the end of the key, it repeats, selecting
+the next coefficient. The length of this key has no real bound, but
+it must ensure that all data is hidden before reaching the last DCT
+coefficient in the image. There is, however, a range of values that
+must be selected for the key to work. Since the key alters bits,
+values between one and eight must be used. However, if larger
+values are used, it will alter the image greatly since it changes
+more and more significant bits.</para>
+<figure id="id29037930">
+	<media id="idp8456800" alt=""><image src="../../media/bit-o-steg_result" mime-type="image/png"/></media>
+	<caption> Minimal changes have been made to the picture matrix after the application of the bit-o-steg algorithm </caption></figure>
+</section>
+<section id="id49306991">
+<title>Retrieving the Data</title>
+<para id="id28473179">Retrieving the data is impossible unless you
+have the special key used to hide the data. Once you get the key
+you simply reverse apply the key, extracting rather than inputting
+the bits and reconstruct your hidden data stream from those
+bits.</para>
+</section>
+</section>
+</section>
+</content>
+</document>

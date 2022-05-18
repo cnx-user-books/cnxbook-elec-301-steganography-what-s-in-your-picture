@@ -1,0 +1,23 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Compression Framework</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>aace3a89-8cc6-445b-abbe-9c58c02a3957</md:uuid>
+</metadata>
+<content>
+<section id="id28431409">
+<title>Compression</title>
+<section id="id51492214">
+<title>Compression Framework</title>
+<para id="id51901077">There are many picture file formats to save
+images to, however much of the research in steganography is done
+using the JPEG format. JPEG is a very common and uses a relatively
+straightforward compression algorithm. Although there are several
+JPEG compression scripts written for MATLAB, customizing them for
+our purposes and getting the output to work with the JPEG format
+would have shifted the focus of our project from steganography to
+implementing JPEG compression. Thus we decided to implement our own
+custom image framework that would be similar to JPEG but much more
+straightforward.</para>
+</section>
+</section>
+</content>
+</document>

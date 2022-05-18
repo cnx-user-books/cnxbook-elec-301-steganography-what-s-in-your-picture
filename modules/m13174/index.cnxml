@@ -1,0 +1,27 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+<title>Compression - Zeros Grouping</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>37473591-c140-4949-bb66-0fc4772bbc57</md:uuid>
+</metadata>
+<content>
+<section id="id27471366">
+<title>Compression Algorithm</title>
+<section id="id27514248">
+<title>Zeros Grouping</title>
+<para id="id27392451">The second part to our image framework is
+zeros grouping. Just like the JPEG standard, the algorithm utilizes
+a zig-zag pattern that goes through each DCT matrix and creates a
+64-length vector for each matrix. The advantage of the zig-zag
+pattern is that it groups the resulting vector from low
+frequencies to high frequencies. Groups of zeros are then replaced
+with an ASCII character representing how many zeros are represented
+within that group.</para>
+<figure id="id27581969">
+	<media id="idm8398160" alt=""><image src="../../media/zig-zag" mime-type="image/png"/></media>
+	<caption>Zig-zag method traverses the matrix and vectorizes the matrix. After grouping zeros the resulting bitstream is sent to a file.</caption></figure>
+<para id="id27381020">With this simple framework in place, we are
+able to model a real world image compression algorithm and focus on
+implementing steganography.</para>
+</section>
+</section>
+</content>
+</document>
